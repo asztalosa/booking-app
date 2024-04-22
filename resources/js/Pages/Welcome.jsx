@@ -1,6 +1,9 @@
 import { Link, Head } from '@inertiajs/react';
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid';
+import ApartmentCards from '../Components/ApartmentCards';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ auth, laravelVersion, phpVersion, date }) {
     const handleImageError = () => {
         document.getElementById('screenshot-container')?.classList.add('!hidden');
         document.getElementById('docs-card')?.classList.add('!row-span-1');
@@ -61,9 +64,13 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         </header>
                         <main className="mt-6">
                         </main>
-                           //TODO: Add the rest of the content here
+                          <Container>
+                                <Grid container spacing={2}>
+                                    <ApartmentCards />
+                                </Grid>
+                          </Container>
                         <footer className="py-16 text-center text-sm text-black dark:text-white/70">
-                            Laravel v{laravelVersion} (PHP v{phpVersion})
+                          book-me.local @{date}
                         </footer>
                     </div>
                 </div>
