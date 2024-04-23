@@ -2,11 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ApartmentsController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+
+Route::post('user/login', [UserController::class, 'login']);
+Route::get('/users', [UserController::class, 'index'])->middleware('auth:sanctum');
 
 Route::get('/apartments', [ApartmentsController::class, 'listAll']);
 
+Route::get('/customers', [CustomerController::class, 'getCustomers'])->middleware('auth:sanctum');
+Route::get('/customer/{id}', [CustomerController::class, 'getCustomerById'])->middleware('auth:sanctum');
