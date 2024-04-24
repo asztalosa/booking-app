@@ -38,7 +38,7 @@ const ApartmentCards = () => {
                             </Grid>                              
                             <Rating name="raiting" value={4.5} readOnly precision={0.5} />  
                             <Grid container py={3}>     
-                                    <Button fullWidth color="inherit" href={route('get-apartment', apartment.id)}  variant="outlined" startIcon={<SendIcon />}>
+                                    <Button fullWidth color="inherit" href={route('apartment.show', apartment.id)}  variant="outlined" startIcon={<SendIcon />}>
                                         Details
                                     </Button>                                        
                             </Grid>
