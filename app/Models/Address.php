@@ -13,7 +13,6 @@ class Address extends Model
     protected $hidden = ['customer_id', 'customer'];
     
 
-
     public function customer()
     {
         return $this->belongsTo(Customer::class);

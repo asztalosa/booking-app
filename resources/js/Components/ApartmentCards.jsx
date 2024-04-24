@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
-import AirlineSeatFlatRoundedIcon from '@mui/icons-material/AirlineSeatFlatRounded';
 import Box from '@mui/material/Box';
-import AmenitiesIcon from './Partials/AmenitiesIcon';
 import Rating from '@mui/material/Rating';
+import { Typography } from '@mui/material';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 const ApartmentCards = () => {
 
@@ -21,6 +23,7 @@ const ApartmentCards = () => {
         fetchApartments();
     }, []);
 
+
     return (
         <Grid container spacing={2}>
             {apartments.map((apartment, index) => (
@@ -28,18 +31,17 @@ const ApartmentCards = () => {
                     <Paper>
                         <img className="aps-card-img" src={apartment.image} alt={apartment.apartment_name} />
                         <Box m={2}>
-                            <h1>{apartment.apartment_name}</h1>
-                            <Grid container>
-                                <AirlineSeatFlatRoundedIcon />
-                                <Box ml={1}>
-                                    <p>{apartment.number_of_bedrooms}</p>                                  
-                                </Box>    
-                            </Grid>   
-                            <p> Amenities</p>    
-                            <Box>
-                            <AmenitiesIcon apartment={apartment} />   
-                            </Box>
-                            <Rating name="raiting" value={4} readOnly />  
+                            <Typography variant="h6">{apartment.apartment_name}</Typography>                           
+                            <Grid container mb={3}>    
+                            <LocationOnIcon />                          
+                            <Typography variant="body2">{apartment.location}</Typography>                                                                                                            
+                            </Grid>                              
+                            <Rating name="raiting" value={4.5} readOnly precision={0.5} />  
+                            <Grid container py={3}>     
+                                    <Button fullWidth color="inherit" href={route('get-apartment', apartment.id)}  variant="outlined" startIcon={<SendIcon />}>
+                                        Details
+                                    </Button>                                        
+                            </Grid>
                         </Box>                                                
                     </Paper>
                 </Grid>

@@ -12,4 +12,10 @@ class ApartmentsController extends Controller
         $apartments = Apartment::all();
         return response()->json($apartments);
     }
+
+    public function getApartmentById($id)
+    {
+        $apartment = Apartment::find($id);
+        return response()->json($apartment);
+    }
 }
