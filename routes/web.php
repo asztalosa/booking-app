@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('apartment/{id}', [ApartmentsController::class, 'getApartmentById'])->name('get-apartment');
-Route::get('apartment-/{id}', [ApartmentsController::class, 'show'])->name('apartment.show');
+Route::get('apartment-/{apartment}', [ApartmentsController::class, 'show'])->name('apartment.show');
 
 
 Route::middleware('auth')->group(function () {

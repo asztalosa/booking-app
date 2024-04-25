@@ -31,7 +31,7 @@ const ApartmentCards = () => {
                     <Paper>
                         <img className="aps-card-img" src={apartment.image} alt={apartment.apartment_name} />
                         <Box m={2}>
-                            <Typography variant="h6">{apartment.apartment_name}</Typography>                           
+                            <Typography variant="h6" noWrap>{apartment.apartment_name}</Typography>                           
                             <Grid container mb={3}>    
                             <LocationOnIcon />                          
                             <Typography variant="body2">{apartment.location}</Typography>                                                                                                            

@@ -20,9 +20,8 @@ class ApartmentsController extends Controller
         return response()->json($apartment);
     }
 
-    public function show($id)
+    public function show(Apartment $apartment)
     {
-        $apartment = Apartment::find($id);
         return Inertia::render('Apartment', [
             'apartment' => $apartment
         ]);
