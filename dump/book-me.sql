@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése book_me.addresses: 23 rows
+DELETE FROM `addresses`;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
 INSERT INTO `addresses` (`id`, `address_type_id`, `street_address`, `city`, `state`, `postal_code`, `country`, `customer_id`) VALUES
 	(1, 1, '48124 Orin Place', 'Matara', NULL, '81000', 'Sri Lanka', '3'),
@@ -66,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `address_types` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése book_me.address_types: 2 rows
+DELETE FROM `address_types`;
 /*!40000 ALTER TABLE `address_types` DISABLE KEYS */;
 INSERT INTO `address_types` (`id`, `name`) VALUES
 	(1, 'billing'),
@@ -86,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `apartments` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése book_me.apartments: 32 rows
+DELETE FROM `apartments`;
 /*!40000 ALTER TABLE `apartments` DISABLE KEYS */;
 INSERT INTO `apartments` (`id`, `apartment_name`, `description`, `location`, `price_per_night`, `number_of_bedrooms`, `amenities`, `availability`, `image`) VALUES
 	(1, 'Franecki Group', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\r\n\r\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'Krajan Gebangan', 1, 1, 'Pool', '1', 'https://media.istockphoto.com/id/1278384351/hu/fot%C3%B3/ingatlan-berlini-t%C3%A1rsash%C3%A1zak-szoci%C3%A1lis-lak%C3%A1sok-%C3%A9s-t%C5%91kebefektet%C3%A9sek.jpg?s=1024x1024&w=is&k=20&c=NfkVl093Se_h8mrg76tyGuNeE6YQPqWQaLGK4v-NiqY='),
@@ -134,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése book_me.bookings: 22 rows
+DELETE FROM `bookings`;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
 INSERT INTO `bookings` (`booking_id`, `check_in_date`, `check_out_date`, `total_price`, `booking_status`, `apartment_id`, `customer_id`) VALUES
 	(1, '2023-07-31', '2023-11-25', 5232.08, 'pending', 1, 1),
@@ -169,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `cache` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.cache: ~0 rows (hozzávetőleg)
+DELETE FROM `cache`;
 
 -- Struktúra mentése tábla book_me. cache_locks
 CREATE TABLE IF NOT EXISTS `cache_locks` (
@@ -179,6 +184,7 @@ CREATE TABLE IF NOT EXISTS `cache_locks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.cache_locks: ~0 rows (hozzávetőleg)
+DELETE FROM `cache_locks`;
 
 -- Struktúra mentése tábla book_me. customers
 CREATE TABLE IF NOT EXISTS `customers` (
@@ -190,6 +196,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése book_me.customers: 22 rows
+DELETE FROM `customers`;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (`id`, `first_name`, `last_name`, `email`, `phone`) VALUES
 	(1, 'Collin', 'Ower', 'cower0@flavors.me', '723-793-6401'),
@@ -230,6 +237,7 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.failed_jobs: ~0 rows (hozzávetőleg)
+DELETE FROM `failed_jobs`;
 
 -- Struktúra mentése tábla book_me. jobs
 CREATE TABLE IF NOT EXISTS `jobs` (
@@ -245,6 +253,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.jobs: ~0 rows (hozzávetőleg)
+DELETE FROM `jobs`;
 
 -- Struktúra mentése tábla book_me. job_batches
 CREATE TABLE IF NOT EXISTS `job_batches` (
@@ -262,6 +271,7 @@ CREATE TABLE IF NOT EXISTS `job_batches` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.job_batches: ~0 rows (hozzávetőleg)
+DELETE FROM `job_batches`;
 
 -- Struktúra mentése tábla book_me. migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -272,6 +282,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.migrations: ~2 rows (hozzávetőleg)
+DELETE FROM `migrations`;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '0001_01_01_000000_create_users_table', 1),
 	(2, '0001_01_01_000001_create_cache_table', 1),
@@ -287,6 +298,7 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.password_reset_tokens: ~0 rows (hozzávetőleg)
+DELETE FROM `password_reset_tokens`;
 
 -- Struktúra mentése tábla book_me. personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
@@ -306,6 +318,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.personal_access_tokens: ~0 rows (hozzávetőleg)
+DELETE FROM `personal_access_tokens`;
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
 	(6, 'App\\Models\\User', 1, 'my-app-token', '4dc054623e08aac5c2b85854326992d7350b8b7aa6579b7febc9c6e62f266baa', '["*"]', '2024-04-24 06:42:42', NULL, '2024-04-23 10:43:04', '2024-04-24 06:42:42');
 
@@ -323,6 +336,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.sessions: ~1 rows (hozzávetőleg)
+DELETE FROM `sessions`;
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 	('5bTBVIfPxPdY30mUs3YN0EB6ELMHaRdI7I05m4Vc', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiR2o1N2M2MHRpR0xMVEFheHpKOElmRUpSRHd6RXczM09PNU03ajN5OSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9ib29rLW1lLmxvY2FsL2FwYXJ0bWVudC0vMiI7fX0=', 1714048910);
 
@@ -341,6 +355,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tábla adatainak mentése book_me.users: ~0 rows (hozzávetőleg)
+DELETE FROM `users`;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 'Alex', 'jozsef.asztalosalex@medicover.hu', NULL, '$2y$12$neIh2KgGL0gCn2ZlXwuA9u9E77KoUmu/R/WkCMDS04z8AN7JvdH22', NULL, '2024-04-17 11:03:34', '2024-04-17 11:03:34');
 
