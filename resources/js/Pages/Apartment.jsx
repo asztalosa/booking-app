@@ -37,7 +37,7 @@ export default function Apartment ({apartment}){
                     elevation={3}
                 >
                     <BottomNavigation>
-                        <BookingModal />
+                        <BookingModal apartment={apartment} />
                     </BottomNavigation>
                 </Paper>
             </Box>         
