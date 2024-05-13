@@ -7,6 +7,7 @@ import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Link, useForm, usePage } from '@inertiajs/react';
+import isWithinInterval  from 'date-fns/isWithinInterval';
 
 export default function BookingCalendar({apartment}) {
 
@@ -20,16 +21,27 @@ export default function BookingCalendar({apartment}) {
     apartment_id: apartment.id,
   });
 
-  const submit = (e) => {
-    e.preventDefault();
+  const [unavailableDates, setUnavailableDates] = useState([]);
 
-    console.log('Check-in:', data.checkInDate);
-    console.log('Check-out:', data.checkOutDate);
-    console.log(apartment.id);
-  
+  React.useEffect(() => {
+    fetch(`/api/check-availability/${apartment.id}`)
+      .then(response => response.json())
+      .then(dates => {
+        // Convert date strings to Date objects
+        const unavailableDates = dates.map(date => new Date(date));
+        unavailableDates.forEach((unavailableDate) => {
+          console.log(unavailableDate.toLocaleDateString());
+        });
+        setUnavailableDates(unavailableDates);
+      });
+      console.log(unavailableDates.toLocaleString('en-CA'));
+  }, [apartment.id]);
+
+
+  const submit = (e) => {
+    e.preventDefault(); 
     post(route('book.store'), data);
   }
-
 
   React.useEffect(() => {
     if (ref.current && !dpInstance.current) {
@@ -52,7 +64,7 @@ export default function BookingCalendar({apartment}) {
       },
       );
     }
-  }, [today]);
+  }, [today, unavailableDates]);
 
   return (
     <div>

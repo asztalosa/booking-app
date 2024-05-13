@@ -15,3 +15,4 @@ Route::get('/apartment/{id}', [ApartmentsController::class, 'getApartmentById'])
 
 Route::get('/customers', [CustomerController::class, 'getCustomers'])->middleware('auth:sanctum');
 Route::get('/customer/{id}', [CustomerController::class, 'getCustomerById'])->middleware('auth:sanctum');
+Route::get('/check-availability/{id}', [ApartmentsController::class, 'checkAvailability']);
