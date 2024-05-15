@@ -29,6 +29,6 @@ class BookController extends Controller
         $bookings->total_price = $totalPrice;
         $bookings->save();
 
-        return response()->json($numberOfDays, 201);
+        return redirect()->route('welcome');
     }
 }

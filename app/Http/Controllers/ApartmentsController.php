@@ -30,25 +30,30 @@ class ApartmentsController extends Controller
 
     public function checkAvailability($apartmentId)
     {
-        $bookedDates = [];
-        $bookings = Book::where('apartment_id', $apartmentId)->get();
+            $bookedDates = [];
+            $bookings = Book::where('apartment_id', $apartmentId)->get();
 
-        foreach ($bookings as $booking) {
-            $checkInDate = new \DateTime($booking->check_in_date);
-            $checkOutDate = new \DateTime($booking->check_out_date);
+            if(!$bookings->isEmpty()) {
+                
+        
+            foreach ($bookings as $booking) {
+                $checkInDate = new \DateTime($booking->check_in_date);
+                $checkOutDate = new \DateTime($booking->check_out_date);
 
-            $interval = $checkInDate->diff($checkOutDate);
-            $numberOfDays = $interval->days;
+                $interval = $checkInDate->diff($checkOutDate);
+                $numberOfDays = $interval->days;
 
-            for ($i = 0; $i < $numberOfDays; $i++) {
-                $bookedDates[] = $checkInDate->modify("+1 day")->format('Y-m-d');
+                for ($i = 0; $i <= $numberOfDays; $i++) {
+                    $bookedDates[] = $checkInDate->format('Y-m-d');
+                    $checkInDate->modify("+1 day");
+                }
             }
+            $bookedDates = array_unique($bookedDates);
+            return response()->json($bookedDates);
+
+        } else {
+            $bookedDates = array_unique($bookedDates);
+            return response()->json($bookedDates);
         }
-     
-        
-
-        
-        return response()->json($bookedDates);
-
     }
 }

@@ -10,3 +10,21 @@
 .datepicker {
    z-index: 100000 !important;
 }
+
+.air-datepicker.-disabled-range- {
+    --adp-cell-background-color-in-range: #ff3535;
+    --adp-cell-background-color-selected: #fff;
+}
+
+.air-datepicker-cell.-disabled-.-focus- {
+    --adp-color-disabled: #fff !important;
+}
+
+
+/*
+.air-datepicker-cell.-disabled-{
+    --adp-color-disabled: #ff3535 !important;
+    background-color: #ff3535 !important;
+    color:azure !important;
+}
+*/

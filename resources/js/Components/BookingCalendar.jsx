@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Link, useForm, usePage } from '@inertiajs/react';
 import isWithinInterval  from 'date-fns/isWithinInterval';
+import isEqual  from 'date-fns/isEqual';
 
 export default function BookingCalendar({apartment}) {
 
@@ -22,19 +23,29 @@ export default function BookingCalendar({apartment}) {
   });
 
   const [unavailableDates, setUnavailableDates] = useState([]);
+  const unavailableDatesAsString = unavailableDates.map(date => date.toISOString().split(',')[0]);
+  unavailableDatesAsString.map((date) => {
+    console.log(date);
+  });
 
   React.useEffect(() => {
     fetch(`/api/check-availability/${apartment.id}`)
       .then(response => response.json())
       .then(dates => {
         // Convert date strings to Date objects
-        const unavailableDates = dates.map(date => new Date(date));
-        unavailableDates.forEach((unavailableDate) => {
-          console.log(unavailableDate.toLocaleDateString());
-        });
-        setUnavailableDates(unavailableDates);
-      });
-      console.log(unavailableDates.toLocaleString('en-CA'));
+        if (!Array.isArray(dates) || dates.length === 0) {
+          console.log('No dates');
+          return;
+        }
+        else{
+          const unavailableDates = dates.map(date => new Date(date));
+          unavailableDates.forEach((unavailableDate) => {
+            //console.log(unavailableDate.toLocaleDateString());
+          });
+          setUnavailableDates(unavailableDates);
+          //console.log(unavailableDatesAsString);
+        }
+      });  
   }, [apartment.id]);
 
 
@@ -42,6 +53,29 @@ export default function BookingCalendar({apartment}) {
     e.preventDefault(); 
     post(route('book.store'), data);
   }
+
+
+  const disabledDate = new Date('2024-05-16T00:00:00');
+
+  // Check if disabled date is in the range
+  const isDisabledDateIsInRange = ({date, datepicker}) => {
+      const selectedDate = datepicker.selectedDates[0];
+      if (selectedDate && datepicker.selectedDates.length === 1) {
+          const sortedDates = [selectedDate, date].toSorted((a, b) => {
+              if (a.getTime() > b.getTime()) {
+                  return 1;
+              }
+              return -1;
+          })
+  
+          return (isWithinInterval(disabledDate, {
+              start: sortedDates[0],
+              end: sortedDates[1]
+          }))
+      }
+  }
+
+
 
   React.useEffect(() => {
     if (ref.current && !dpInstance.current) {
@@ -51,6 +85,24 @@ export default function BookingCalendar({apartment}) {
         locale: localeEn,       
         selectedDates: today,
         startDate: today,
+        onBeforeSelect: ({date, datepicker}) => {
+          // Dont allow user to select date, if disabled date is in the range
+          return !isDisabledDateIsInRange({date, datepicker});
+        },
+        onFocus: ({date, datepicker}) => {
+            if (isDisabledDateIsInRange({date, datepicker}) || isEqual(date, disabledDate)) {
+              datepicker.$datepicker.classList.add('-disabled-range-')
+            } else {
+              datepicker.$datepicker.classList.remove('-disabled-range-')
+            }
+        },
+        onRenderCell: ({date}) => {
+            if (date.toLocaleDateString() === disabledDate.toLocaleDateString()) {
+                return {
+                    disabled: true
+                }
+            }
+        },
         minDate: today,
         disableNavWhenOutOfRange: true,
         onSelect: function () {
